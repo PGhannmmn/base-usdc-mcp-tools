@@ -6,7 +6,9 @@
 
 **Publication scope:** An isolated, public GitHub branch only. The production website on `main` and all Cloudflare Workers are unchanged. To view the HTML browser interactively, download `site/index.html` and open it locally; GitHub's source viewer does not execute HTML.
 
-**Demand monitoring:** NOT enabled. No trustworthy count of product downloads or paying customers has been collected. No storefront or checkout is enabled.
+**Demand tracking:** [Product-specific public feedback issue #1](https://github.com/PGhannmmn/base-usdc-mcp-tools/issues/1) is open for missing scenarios and concrete developer use cases. The number of **unique independent developers providing actionable feedback** can be tracked; repo-wide stars/forks and branch ZIP links are **not** product-specific download or customer metrics. No storefront or checkout is enabled.
+
+**Your input:** Did you try one of the 35 synthetic test cases? [Suggest a missing scenario or integration need](https://github.com/PGhannmmn/base-usdc-mcp-tools/issues/1). No wallet, email signup or paid plan required. Don't share secrets or real customer payment data.
 
 ---
 
