@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Free Base USDC Payment QA Fixture Kit | 35 Synthetic Test Cases</title>
+<meta name="description" content="Free offline Base USDC payment QA fixture kit: 35 synthetic ERC-20 transfer, replay, finality and RPC disagreement cases, with Python tests and JSON schema.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Base USDC Payment QA Fixture Kit">
+<meta property="og:description" content="35 synthetic USDC edge cases. Offline Python and JSON fixtures. No wallet, RPC or signup.">
+<meta property="og:url" content="https://pghannmmn.github.io/base-usdc-mcp-tools/qa-fixture-kit/">
+<link rel="canonical" href="https://pghannmmn.github.io/base-usdc-mcp-tools/qa-fixture-kit/">
+<style>
+:root{color-scheme:dark;--bg:#090e19;--surface:#111e31;--border:#34435b;--fg:#f2f7ff;--muted:#b4c5d9;--mint:#7af0bb}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse 880px 480px at 90% -10%,#1e3c56 0%,transparent 75%),var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:var(--mint);text-underline-offset:3px}:focus-visible{outline:2px solid #ffdb93;outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{position:static} .wrap{width:min(1040px,100%);margin:auto;padding:0 25px}
+header{border-bottom:1px solid #ffffff2a}.nav{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:22px 0}.nav a{font-size:14px;color:#d5e6f8}
+.brand{text-decoration:none;font-weight:750;font-size:17px!important}.overline{font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:800;color:var(--mint)}
+.hero{padding:76px 0 42px}.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.12;letter-spacing:-.05em;max-width:900px;margin:15px 0 22px}.hero p{max-width:760px;color:var(--muted);font-size:1.12rem}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:29px 0 0}
+.button{background:var(--mint);color:#082219;border-radius:10px;padding:12px 20px;font-weight:750;text-decoration:none;min-height:46px;display:inline-flex;align-items:center}.button.secondary{background:#17253a;color:#edf6ff;border:1px solid #566b88}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:24px 0 42px}.stat{border:1px solid var(--border);background:var(--surface);border-radius:14px;padding:22px}.stat strong{font-size:32px;display:block;line-height:1.1}.stat span{font-size:13px;color:var(--muted)}
+section{padding:29px 0}h2{font-size:clamp(1.6rem,3.3vw,2.25rem);letter-spacing:-.03em;margin:0 0 17px}p{margin:10px 0;color:#cedbea}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.panel{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:22px}.panel h3{margin:0 0 6px;font-size:1.07rem}.panel p{font-size:.94rem;color:var(--muted)}pre{padding:19px;border:1px solid #3c536b;background:#07101d;color:#d4e5ff;border-radius:12px;overflow-x:auto;white-space:pre-wrap;overflow-wrap:anywhere}
+.note{padding:18px 21px;background:#2a221c;border:1px solid #836b3b;border-radius:13px;color:#ffdfa8}.note strong{color:#ffe3af}
+footer{margin-top:55px;padding:26px 0 47px;border-top:1px solid #ffffff26;color:var(--muted);font-size:13px}
+@media(max-width:650px){.wrap{padding:0 18px}.hero{padding:49px 0 28px}.grid,.stats{grid-template-columns:1fr}.actions .button{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+<header><div class="wrap nav"><a class="brand" href="../">← Base USDC Tools</a><a href="https://github.com/PGhannmmn/base-usdc-mcp-tools/issues/1" rel="noopener noreferrer">Request a scenario ↗</a></div></header>
+<main id="main" class="wrap">
+<section class="hero">
+<div class="overline">Free developer resources · Offline · v0.1.0</div>
+<h1>Test Base USDC payment edge cases without moving money.</h1>
+<p>A free, deterministic QA fixture kit for developers testing ERC-20 payment handling. Explore 35 invented receipts and logs, run a Python reference evaluator, and exercise common error conditions — no RPC, wallet, keys, tokens, gas or sign-up required.</p>
+<div class="actions">
+<a class="button" href="https://github.com/PGhannmmn/base-usdc-mcp-tools/releases/tag/qa-fixture-kit-v0.1.0" rel="noopener noreferrer">Get free ZIP from GitHub →</a>
+<a class="button secondary" href="https://github.com/PGhannmmn/base-usdc-mcp-tools/tree/preview/base-usdc-payment-qa-v0.1" rel="noopener noreferrer">View source and tests</a>
+</div>
+</section>
+<div class="stats" aria-label="Kit specifications">
+<div class="stat"><strong>35</strong><span>Synthetic payment cases</span></div>
+<div class="stat"><strong>20+</strong><span>Automated regression tests</span></div>
+<div class="stat"><strong>$0</strong><span>Price and runtime dependencies</span></div>
+</div>
+<div class="note"><strong>Test data, not real payment verification.</strong> Every transaction, finalized head and RPC response in this kit is synthetic. Do not use its decisions to authorize actual payments, paid downloads or x402 settlement. It has no trusted production RPC, cryptographic authorization or atomic claim store.</div>
+<section aria-labelledby="coverage"><h2 id="coverage">What you can test</h2>
+<div class="grid">
+<div class="panel"><h3>Native USDC vs bridged USDbC</h3><p>Reject payments attributed to the wrong ERC-20 token, network or address.</p></div>
+<div class="panel"><h3>Exact amount &amp; recipient</h3><p>Model underpayment, overpayment, wrong payer, wrong recipient and decimal mistakes.</p></div>
+<div class="panel"><h3>Finality &amp; provider disagreement</h3><p>Exercise pending, failed, unavailable and conflicting synthetic RPC views.</p></div>
+<div class="panel"><h3>Replay &amp; event log handling</h3><p>Check duplicate proof claims, wrong log indexes, malformed events and multiple transfers within a transaction.</p></div>
+</div></section>
+<section aria-labelledby="run"><h2 id="run">Run it offline in two commands</h2>
+<p>Download the release ZIP asset, extract the contents, then execute from the extracted kit directory using Python 3.10+:</p>
+<pre><code>python src/check_cases.py
+python -m unittest discover -s tests -v</code></pre>
+<p>No dependencies required for core tests. The included <code>site/index.html</code> is an offline searchable browser of all 35 cases.</p>
+</section>
+<section aria-labelledby="contents"><h2 id="contents">What's included</h2>
+<div class="grid">
+<div class="panel"><h3>Portable fixtures</h3><p><code>fixtures/scenarios.json</code>, JSON Schema and an expected-outcome matrix.</p></div>
+<div class="panel"><h3>Reproducible QA scripts</h3><p>Reference evaluator, CLI checks, deterministic fixture builder, test suite and integrity manifest.</p></div>
+</div></section>
+<section aria-labelledby="feedback"><h2 id="feedback">Help improve coverage</h2><p>Missing a real-world workflow or important edge case? <a href="https://github.com/PGhannmmn/base-usdc-mcp-tools/issues/1" rel="noopener noreferrer">Share a specific test scenario via the public feedback issue</a>. No account is required to download; GitHub login may be required to comment. Never post private keys, customer transactions or personally identifying data.</p></section>
+</main>
+<footer><div class="wrap">Independent, experimental open-source QA resource. Not affiliated with Circle, Coinbase or Base. Not part of the paid MCP services. <a href="../">Return to Base USDC Tools</a>.</div></footer>
+</body>
+</html>
