@@ -9,7 +9,7 @@ RELEASE='base-usdc-payment-qa-kit-v0.1.0'
 DIST=ROOT/'dist'
 DIST.mkdir(exist_ok=True)
 TARGET=DIST/(RELEASE+'.zip')
-FILES=[x for x in ROOT.rglob('*') if x.is_file() and not any(p in ('dist','__pycache__','.git') for p in x.relative_to(ROOT).parts)]
+FILES=[x for x in ROOT.rglob('*') if x.is_file() and x.name != 'SHA256SUMS.txt' and not any(p in ('dist','__pycache__','.git') for p in x.relative_to(ROOT).parts)]
 FILES.sort(key=lambda x:x.relative_to(ROOT).as_posix())
 assert all(not ('.env' in x.name or 'secret' in x.name.lower() or x.name=='id_rsa') for x in FILES)
 manifest=''.join(hashlib.sha256(x.read_bytes()).hexdigest()+'  '+x.relative_to(ROOT).as_posix()+'\n' for x in FILES)
