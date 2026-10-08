@@ -40,7 +40,7 @@ jobs:
       - name: Publish one prerelease on the preview commit (no main changes)
         shell: bash
         env:
-          GH_TOKEN: \${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           TAG='qa-fixture-kit-v0.1.0'
