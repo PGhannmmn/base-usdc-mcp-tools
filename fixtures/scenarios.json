@@ -1,0 +1,2642 @@
+{
+  "version": "0.1.0",
+  "dataset": "Base USDC Synthetic Payment QA Fixtures",
+  "not_for_production": true,
+  "description": "Synthetic, no real signatures, no real private keys, no broadcast RPC.",
+  "cases": [
+    {
+      "id": "happy-path",
+      "description": "Exact 1 USDC native transfer, two agreeing finalized snapshots.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "ACCEPT",
+      "order": {
+        "order_id": "order-happy-path",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x6d8d63b3882a05829e80ae7241f8c5f364f203b18738561767acc535f18ec5ec",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x6d8d63b3882a05829e80ae7241f8c5f364f203b18738561767acc535f18ec5ec",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x6d8d63b3882a05829e80ae7241f8c5f364f203b18738561767acc535f18ec5ec",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x6d8d63b3882a05829e80ae7241f8c5f364f203b18738561767acc535f18ec5ec",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x6d8d63b3882a05829e80ae7241f8c5f364f203b18738561767acc535f18ec5ec",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-insensitive-address",
+      "description": "Mixed-case input address still matches ERC-20 fields.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "ACCEPT",
+      "order": {
+        "order_id": "order-case-insensitive-address",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x19c69e719d7f345e6f29b778f63893a83a4507394e077329744b279289f9e91c",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x19c69e719d7f345e6f29b778f63893a83a4507394e077329744b279289f9e91c",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x19c69e719d7f345e6f29b778f63893a83a4507394e077329744b279289f9e91c",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x19c69e719d7f345e6f29b778f63893a83a4507394e077329744b279289f9e91c",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x19c69e719d7f345e6f29b778f63893a83a4507394e077329744b279289f9e91c",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrong-order-network",
+      "description": "Order asks for an unsupported EVM network.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "WRONG_NETWORK",
+      "order": {
+        "order_id": "order-wrong-order-network",
+        "network": "eip155:1",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x8a741ffa4f036a153bac6e86c3dadab256b7df69977cb0e0bc44f442b7a77732",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x8a741ffa4f036a153bac6e86c3dadab256b7df69977cb0e0bc44f442b7a77732",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x8a741ffa4f036a153bac6e86c3dadab256b7df69977cb0e0bc44f442b7a77732",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x8a741ffa4f036a153bac6e86c3dadab256b7df69977cb0e0bc44f442b7a77732",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x8a741ffa4f036a153bac6e86c3dadab256b7df69977cb0e0bc44f442b7a77732",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrong-proof-network",
+      "description": "Proof network claims Ethereum L1.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "WRONG_NETWORK",
+      "order": {
+        "order_id": "order-wrong-proof-network",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:1",
+        "transaction_hash": "0x03fe292b070381bf643c1b55949e73aaec75946fd3e5eae30664a7ec2fc25c7c",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x03fe292b070381bf643c1b55949e73aaec75946fd3e5eae30664a7ec2fc25c7c",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x03fe292b070381bf643c1b55949e73aaec75946fd3e5eae30664a7ec2fc25c7c",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x03fe292b070381bf643c1b55949e73aaec75946fd3e5eae30664a7ec2fc25c7c",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x03fe292b070381bf643c1b55949e73aaec75946fd3e5eae30664a7ec2fc25c7c",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "rpc-on-other-chain",
+      "description": "RPC views report a different chain ID.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "WRONG_NETWORK",
+      "order": {
+        "order_id": "order-rpc-on-other-chain",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x0425605708b010cb2b488c0669710781edd5faac5c92f5f5fa6c9f549d3e0c44",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 1,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x0425605708b010cb2b488c0669710781edd5faac5c92f5f5fa6c9f549d3e0c44",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x0425605708b010cb2b488c0669710781edd5faac5c92f5f5fa6c9f549d3e0c44",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 1,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x0425605708b010cb2b488c0669710781edd5faac5c92f5f5fa6c9f549d3e0c44",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x0425605708b010cb2b488c0669710781edd5faac5c92f5f5fa6c9f549d3e0c44",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "bridged-usdbc",
+      "description": "USDbC log cannot fulfill a native USDC order.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "WRONG_ASSET",
+      "order": {
+        "order_id": "order-bridged-usdbc",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xf2db6aede2cd9a615a70f7d820b3877462b4d96ba83819c79cd010b94b586a06",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xf2db6aede2cd9a615a70f7d820b3877462b4d96ba83819c79cd010b94b586a06",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xf2db6aede2cd9a615a70f7d820b3877462b4d96ba83819c79cd010b94b586a06",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xf2db6aede2cd9a615a70f7d820b3877462b4d96ba83819c79cd010b94b586a06",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xf2db6aede2cd9a615a70f7d820b3877462b4d96ba83819c79cd010b94b586a06",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrong-order-token",
+      "description": "Order requests bridged token instead of native USDC.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "WRONG_ASSET",
+      "order": {
+        "order_id": "order-wrong-order-token",
+        "network": "eip155:8453",
+        "asset": "0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x2f76ec9da97b6f8b7faadc2185e83ebaf218e1391a45a5cf9ebdc7536e3dc714",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x2f76ec9da97b6f8b7faadc2185e83ebaf218e1391a45a5cf9ebdc7536e3dc714",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x2f76ec9da97b6f8b7faadc2185e83ebaf218e1391a45a5cf9ebdc7536e3dc714",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x2f76ec9da97b6f8b7faadc2185e83ebaf218e1391a45a5cf9ebdc7536e3dc714",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x2f76ec9da97b6f8b7faadc2185e83ebaf218e1391a45a5cf9ebdc7536e3dc714",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrong-payer",
+      "description": "Transfer sender does not match bound order payer.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "WRONG_PAYER",
+      "order": {
+        "order_id": "order-wrong-payer",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x0208556e3fea662ea8139695a895c567d7225ebc15a737ad8bf50b63d468d842",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x0208556e3fea662ea8139695a895c567d7225ebc15a737ad8bf50b63d468d842",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000003333333333333333333333333333333333333333",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x0208556e3fea662ea8139695a895c567d7225ebc15a737ad8bf50b63d468d842",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x0208556e3fea662ea8139695a895c567d7225ebc15a737ad8bf50b63d468d842",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000003333333333333333333333333333333333333333",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x0208556e3fea662ea8139695a895c567d7225ebc15a737ad8bf50b63d468d842",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrong-recipient",
+      "description": "Transfer paid to a different wallet.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "WRONG_RECIPIENT",
+      "order": {
+        "order_id": "order-wrong-recipient",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xf975c3dcec42510aaee238447742384006b8172e66afbe485b6ae0881d341148",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xf975c3dcec42510aaee238447742384006b8172e66afbe485b6ae0881d341148",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000003333333333333333333333333333333333333333"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xf975c3dcec42510aaee238447742384006b8172e66afbe485b6ae0881d341148",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xf975c3dcec42510aaee238447742384006b8172e66afbe485b6ae0881d341148",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000003333333333333333333333333333333333333333"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xf975c3dcec42510aaee238447742384006b8172e66afbe485b6ae0881d341148",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "underpayment",
+      "description": "999999 atomic units is less than the required 1000000.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "UNDERPAYMENT",
+      "order": {
+        "order_id": "order-underpayment",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xa9dc119ed2dd2fe217aedac6671f724d89c12dc179f1714ec278124572714c80",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xa9dc119ed2dd2fe217aedac6671f724d89c12dc179f1714ec278124572714c80",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f423f",
+                "log_index": "0x0",
+                "transaction_hash": "0xa9dc119ed2dd2fe217aedac6671f724d89c12dc179f1714ec278124572714c80",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xa9dc119ed2dd2fe217aedac6671f724d89c12dc179f1714ec278124572714c80",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f423f",
+                "log_index": "0x0",
+                "transaction_hash": "0xa9dc119ed2dd2fe217aedac6671f724d89c12dc179f1714ec278124572714c80",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "overpayment",
+      "description": "Exact-match policy rejects 1000001 atomic units.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "OVERPAYMENT",
+      "order": {
+        "order_id": "order-overpayment",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xa4906b331afec8ab87dfe7ee19da6315c0d9ce10f95b5715a142df443588ba2c",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xa4906b331afec8ab87dfe7ee19da6315c0d9ce10f95b5715a142df443588ba2c",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4241",
+                "log_index": "0x0",
+                "transaction_hash": "0xa4906b331afec8ab87dfe7ee19da6315c0d9ce10f95b5715a142df443588ba2c",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xa4906b331afec8ab87dfe7ee19da6315c0d9ce10f95b5715a142df443588ba2c",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4241",
+                "log_index": "0x0",
+                "transaction_hash": "0xa4906b331afec8ab87dfe7ee19da6315c0d9ce10f95b5715a142df443588ba2c",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "wrong-decimals",
+      "description": "Order metadata mistakenly declares 18 decimals instead of 6.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "WRONG_DECIMALS",
+      "order": {
+        "order_id": "order-wrong-decimals",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 18,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x7cab65b196267c22ae9fa2e76a9ccc67ddff3054b5f3d0dbc99a184b25d55c00",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x7cab65b196267c22ae9fa2e76a9ccc67ddff3054b5f3d0dbc99a184b25d55c00",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x7cab65b196267c22ae9fa2e76a9ccc67ddff3054b5f3d0dbc99a184b25d55c00",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x7cab65b196267c22ae9fa2e76a9ccc67ddff3054b5f3d0dbc99a184b25d55c00",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x7cab65b196267c22ae9fa2e76a9ccc67ddff3054b5f3d0dbc99a184b25d55c00",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "failed-receipt",
+      "description": "Receipt status indicates reverted transaction.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "TX_FAILED",
+      "order": {
+        "order_id": "order-failed-receipt",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x91fbe6d95e3872a33a174b70778bcd457d2bddc1afd6690e2d7f86927abaa7d4",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x91fbe6d95e3872a33a174b70778bcd457d2bddc1afd6690e2d7f86927abaa7d4",
+            "status": "0x0",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x91fbe6d95e3872a33a174b70778bcd457d2bddc1afd6690e2d7f86927abaa7d4",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x91fbe6d95e3872a33a174b70778bcd457d2bddc1afd6690e2d7f86927abaa7d4",
+            "status": "0x0",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x91fbe6d95e3872a33a174b70778bcd457d2bddc1afd6690e2d7f86927abaa7d4",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "pending-both",
+      "description": "Both providers have no receipt yet.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "PENDING",
+      "order": {
+        "order_id": "order-pending-both",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x6ae1f457584200318a07e3cb392a7f20576bd73cd9be71e40857820c01fa741e",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": null
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": null
+        }
+      ]
+    },
+    {
+      "id": "receipt-missing-on-one",
+      "description": "One provider sees receipt while the other does not.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "RPC_DISAGREEMENT",
+      "order": {
+        "order_id": "order-receipt-missing-on-one",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x5fd22dd079bf32c6b508fe4683a7d74b1efc40b26461602aff31902c7d78a813",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x5fd22dd079bf32c6b508fe4683a7d74b1efc40b26461602aff31902c7d78a813",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x5fd22dd079bf32c6b508fe4683a7d74b1efc40b26461602aff31902c7d78a813",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": null
+        }
+      ]
+    },
+    {
+      "id": "not-finalized",
+      "description": "One provider finalized head remains below tx block.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "NOT_FINALIZED",
+      "order": {
+        "order_id": "order-not-finalized",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xf0048fbd51ea700d605d1c19c5b390db58169ee92a49770dff17c49eaec3085f",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xf0048fbd51ea700d605d1c19c5b390db58169ee92a49770dff17c49eaec3085f",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xf0048fbd51ea700d605d1c19c5b390db58169ee92a49770dff17c49eaec3085f",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 999,
+          "receipt": {
+            "transaction_hash": "0xf0048fbd51ea700d605d1c19c5b390db58169ee92a49770dff17c49eaec3085f",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xf0048fbd51ea700d605d1c19c5b390db58169ee92a49770dff17c49eaec3085f",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "rpc-disagrees-receipt",
+      "description": "Two RPC providers return different amounts.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "RPC_DISAGREEMENT",
+      "order": {
+        "order_id": "order-rpc-disagrees-receipt",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x37c82d3418c01f63ee12d0b7cff5a8506042a6d0c2d42b6f7a223d66aa112157",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x37c82d3418c01f63ee12d0b7cff5a8506042a6d0c2d42b6f7a223d66aa112157",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x37c82d3418c01f63ee12d0b7cff5a8506042a6d0c2d42b6f7a223d66aa112157",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x37c82d3418c01f63ee12d0b7cff5a8506042a6d0c2d42b6f7a223d66aa112157",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x0000000000000000000000000000000000000000000000000000000000000001",
+                "log_index": "0x0",
+                "transaction_hash": "0x37c82d3418c01f63ee12d0b7cff5a8506042a6d0c2d42b6f7a223d66aa112157",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "rpc-unavailable",
+      "description": "One independent RPC is unavailable.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "RPC_UNAVAILABLE",
+      "order": {
+        "order_id": "order-rpc-unavailable",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xbb4f030b2485279eb28df864455b1d27a6b0dd1e9cac55e27094ed9eb93f0ceb",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xbb4f030b2485279eb28df864455b1d27a6b0dd1e9cac55e27094ed9eb93f0ceb",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xbb4f030b2485279eb28df864455b1d27a6b0dd1e9cac55e27094ed9eb93f0ceb",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": false,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xbb4f030b2485279eb28df864455b1d27a6b0dd1e9cac55e27094ed9eb93f0ceb",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xbb4f030b2485279eb28df864455b1d27a6b0dd1e9cac55e27094ed9eb93f0ceb",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "no-matching-log",
+      "description": "Proof points at a log index not found in the receipt.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "LOG_NOT_FOUND",
+      "order": {
+        "order_id": "order-no-matching-log",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x226c2ed58a3aab1e8f663184df2dceac04365e161352c717e928a4e30fe76455",
+        "log_index": 5
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x226c2ed58a3aab1e8f663184df2dceac04365e161352c717e928a4e30fe76455",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x226c2ed58a3aab1e8f663184df2dceac04365e161352c717e928a4e30fe76455",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x226c2ed58a3aab1e8f663184df2dceac04365e161352c717e928a4e30fe76455",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x226c2ed58a3aab1e8f663184df2dceac04365e161352c717e928a4e30fe76455",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "not-transfer-event",
+      "description": "Indexed event has wrong topic0, not ERC-20 Transfer.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "NOT_TRANSFER_EVENT",
+      "order": {
+        "order_id": "order-not-transfer-event",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x6faca4ea17a03a6d976a2bacdfc1b6cc867445b0b66198b1056d4351ad938ef0",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x6faca4ea17a03a6d976a2bacdfc1b6cc867445b0b66198b1056d4351ad938ef0",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0x0000000000000000000000000000000000000000000000000000000000000000",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x6faca4ea17a03a6d976a2bacdfc1b6cc867445b0b66198b1056d4351ad938ef0",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x6faca4ea17a03a6d976a2bacdfc1b6cc867445b0b66198b1056d4351ad938ef0",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0x0000000000000000000000000000000000000000000000000000000000000000",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x6faca4ea17a03a6d976a2bacdfc1b6cc867445b0b66198b1056d4351ad938ef0",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "malformed-topic-count",
+      "description": "Only two topics for an indexed ERC-20 Transfer.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "MALFORMED_LOG",
+      "order": {
+        "order_id": "order-malformed-topic-count",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xc4ae71f37e3b60152574ac07f149fcacc495086de1e5e926419176255945280c",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xc4ae71f37e3b60152574ac07f149fcacc495086de1e5e926419176255945280c",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xc4ae71f37e3b60152574ac07f149fcacc495086de1e5e926419176255945280c",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xc4ae71f37e3b60152574ac07f149fcacc495086de1e5e926419176255945280c",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xc4ae71f37e3b60152574ac07f149fcacc495086de1e5e926419176255945280c",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "malformed-amount-data",
+      "description": "Transfer data is not 32 bytes.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "MALFORMED_LOG",
+      "order": {
+        "order_id": "order-malformed-amount-data",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x1862911a8d4fd50b925f7cbd0169568a3f070f6f891d2ff65e0e39a034cf8753",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x1862911a8d4fd50b925f7cbd0169568a3f070f6f891d2ff65e0e39a034cf8753",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x10",
+                "log_index": "0x0",
+                "transaction_hash": "0x1862911a8d4fd50b925f7cbd0169568a3f070f6f891d2ff65e0e39a034cf8753",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x1862911a8d4fd50b925f7cbd0169568a3f070f6f891d2ff65e0e39a034cf8753",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x10",
+                "log_index": "0x0",
+                "transaction_hash": "0x1862911a8d4fd50b925f7cbd0169568a3f070f6f891d2ff65e0e39a034cf8753",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "bad-address-padding",
+      "description": "Indexed address topic has nonzero high padding.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "MALFORMED_LOG",
+      "order": {
+        "order_id": "order-bad-address-padding",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x956522975c51f1ba14b899ef2b0c6c2ef1f8d1ee8504a7894ee5ca3baa4e1e90",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x956522975c51f1ba14b899ef2b0c6c2ef1f8d1ee8504a7894ee5ca3baa4e1e90",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0xffffffffffffffffffffffff1111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x956522975c51f1ba14b899ef2b0c6c2ef1f8d1ee8504a7894ee5ca3baa4e1e90",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x956522975c51f1ba14b899ef2b0c6c2ef1f8d1ee8504a7894ee5ca3baa4e1e90",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0xffffffffffffffffffffffff1111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x956522975c51f1ba14b899ef2b0c6c2ef1f8d1ee8504a7894ee5ca3baa4e1e90",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "log-removed",
+      "description": "Reorg-removed log is not valid evidence.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "REMOVED_LOG",
+      "order": {
+        "order_id": "order-log-removed",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xf1c692a8031d1dc33382f6128fd27eb7ff0715e397465eed94f52130878d7fa0",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xf1c692a8031d1dc33382f6128fd27eb7ff0715e397465eed94f52130878d7fa0",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xf1c692a8031d1dc33382f6128fd27eb7ff0715e397465eed94f52130878d7fa0",
+                "removed": true
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xf1c692a8031d1dc33382f6128fd27eb7ff0715e397465eed94f52130878d7fa0",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xf1c692a8031d1dc33382f6128fd27eb7ff0715e397465eed94f52130878d7fa0",
+                "removed": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "log-tx-hash-mismatch",
+      "description": "Log claims a different transaction hash.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "MALFORMED_LOG",
+      "order": {
+        "order_id": "order-log-tx-hash-mismatch",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x5335dab7b8dba4eb73ec256aac7e628d014255a433a45700eeed167a3906c2cd",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x5335dab7b8dba4eb73ec256aac7e628d014255a433a45700eeed167a3906c2cd",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xe79dc381f206c7f949889ee3151ef15231ae487da1d74114bda7c4e69ee425e7",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x5335dab7b8dba4eb73ec256aac7e628d014255a433a45700eeed167a3906c2cd",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xe79dc381f206c7f949889ee3151ef15231ae487da1d74114bda7c4e69ee425e7",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "receipt-tx-hash-mismatch",
+      "description": "Receipt tx hash does not equal supplied proof hash.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "TX_HASH_MISMATCH",
+      "order": {
+        "order_id": "order-receipt-tx-hash-mismatch",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x166e65f73925d66f149309ba7b041562b6b5c9f60b9bc0766c28d19b929fabd6",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xe79dc381f206c7f949889ee3151ef15231ae487da1d74114bda7c4e69ee425e7",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x166e65f73925d66f149309ba7b041562b6b5c9f60b9bc0766c28d19b929fabd6",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xe79dc381f206c7f949889ee3151ef15231ae487da1d74114bda7c4e69ee425e7",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x166e65f73925d66f149309ba7b041562b6b5c9f60b9bc0766c28d19b929fabd6",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "two-logs-select-first",
+      "description": "Two valid transfers in one tx; log index 0 is uniquely selected.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "ACCEPT",
+      "order": {
+        "order_id": "order-two-logs-select-first",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+                "removed": false
+              },
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x1",
+                "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+                "removed": false
+              },
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x1",
+                "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "two-logs-select-second",
+      "description": "Second independent log in same tx may have unique claim key.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "ACCEPT",
+      "order": {
+        "order_id": "order-two-logs-select-second",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+        "log_index": 1
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+                "removed": false
+              },
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x1",
+                "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+                "removed": false
+              },
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x1",
+                "transaction_hash": "0x679e0f8d1f863a306a5b74b852402406a8914c8ae791c9400f637e0b8c477e55",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "replay-claimed-proof",
+      "description": "Same (network, transaction, log index) proof was previously consumed.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "REPLAY",
+      "order": {
+        "order_id": "order-replay-claimed-proof",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x19b955d64466246d4c1086c060708767760bb75cec6e68ce58d3e13b8a71055b",
+        "log_index": 0
+      },
+      "prior_claim_keys": [
+        "eip155:8453:0x19b955d64466246d4c1086c060708767760bb75cec6e68ce58d3e13b8a71055b:0"
+      ],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x19b955d64466246d4c1086c060708767760bb75cec6e68ce58d3e13b8a71055b",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x19b955d64466246d4c1086c060708767760bb75cec6e68ce58d3e13b8a71055b",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x19b955d64466246d4c1086c060708767760bb75cec6e68ce58d3e13b8a71055b",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x19b955d64466246d4c1086c060708767760bb75cec6e68ce58d3e13b8a71055b",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "other-log-already-claimed",
+      "description": "Claim of log 1 is not blocked solely because log 0 was consumed.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "ACCEPT",
+      "order": {
+        "order_id": "order-other-log-already-claimed",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x2909bf4377e1009ea9721bc25b3297252d53e3f03c78770c12d5e9cfe7d27f54",
+        "log_index": 1
+      },
+      "prior_claim_keys": [
+        "eip155:8453:0x2909bf4377e1009ea9721bc25b3297252d53e3f03c78770c12d5e9cfe7d27f54:0"
+      ],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x2909bf4377e1009ea9721bc25b3297252d53e3f03c78770c12d5e9cfe7d27f54",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x2909bf4377e1009ea9721bc25b3297252d53e3f03c78770c12d5e9cfe7d27f54",
+                "removed": false
+              },
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x1",
+                "transaction_hash": "0x2909bf4377e1009ea9721bc25b3297252d53e3f03c78770c12d5e9cfe7d27f54",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x2909bf4377e1009ea9721bc25b3297252d53e3f03c78770c12d5e9cfe7d27f54",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x2909bf4377e1009ea9721bc25b3297252d53e3f03c78770c12d5e9cfe7d27f54",
+                "removed": false
+              },
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x1",
+                "transaction_hash": "0x2909bf4377e1009ea9721bc25b3297252d53e3f03c78770c12d5e9cfe7d27f54",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "duplicate-log-index",
+      "description": "Malformed receipt repeats logIndex 0 for multiple logs.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "DUPLICATE_LOG_INDEX",
+      "order": {
+        "order_id": "order-duplicate-log-index",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xd485d0cde09d55ad737d46831b8b41dd85a1bc9a5ae3341f38b184be0a82be20",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xd485d0cde09d55ad737d46831b8b41dd85a1bc9a5ae3341f38b184be0a82be20",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xd485d0cde09d55ad737d46831b8b41dd85a1bc9a5ae3341f38b184be0a82be20",
+                "removed": false
+              },
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xd485d0cde09d55ad737d46831b8b41dd85a1bc9a5ae3341f38b184be0a82be20",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xd485d0cde09d55ad737d46831b8b41dd85a1bc9a5ae3341f38b184be0a82be20",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xd485d0cde09d55ad737d46831b8b41dd85a1bc9a5ae3341f38b184be0a82be20",
+                "removed": false
+              },
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xd485d0cde09d55ad737d46831b8b41dd85a1bc9a5ae3341f38b184be0a82be20",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "unverified-order-binding",
+      "description": "No trusted per-order binding attestation.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "BINDING_UNVERIFIED",
+      "order": {
+        "order_id": "order-unverified-order-binding",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": false
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xddf3c798cddb7427dddc68a50bdfc15bd5df8277840f6923e7652ab7bdade7b3",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xddf3c798cddb7427dddc68a50bdfc15bd5df8277840f6923e7652ab7bdade7b3",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xddf3c798cddb7427dddc68a50bdfc15bd5df8277840f6923e7652ab7bdade7b3",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xddf3c798cddb7427dddc68a50bdfc15bd5df8277840f6923e7652ab7bdade7b3",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xddf3c798cddb7427dddc68a50bdfc15bd5df8277840f6923e7652ab7bdade7b3",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "missing-proof-hash",
+      "description": "Missing transaction hash is rejected.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "INVALID_PROOF",
+      "order": {
+        "order_id": "order-missing-proof-hash",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x1234",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x61ca630bed1820bcbafdfb099f10daaa1935db092c453330cbb76d0e244a81b2",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x61ca630bed1820bcbafdfb099f10daaa1935db092c453330cbb76d0e244a81b2",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x61ca630bed1820bcbafdfb099f10daaa1935db092c453330cbb76d0e244a81b2",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x61ca630bed1820bcbafdfb099f10daaa1935db092c453330cbb76d0e244a81b2",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "zero-amount-order",
+      "description": "Zero amount has no payable order semantics.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "INVALID_AMOUNT",
+      "order": {
+        "order_id": "order-zero-amount-order",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "0",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0xc01354ce146cb8f6e5ed1efbabea78baae7304551d510bb862e1239fafa3bf1d",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0xc01354ce146cb8f6e5ed1efbabea78baae7304551d510bb862e1239fafa3bf1d",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xc01354ce146cb8f6e5ed1efbabea78baae7304551d510bb862e1239fafa3bf1d",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0xc01354ce146cb8f6e5ed1efbabea78baae7304551d510bb862e1239fafa3bf1d",
+            "status": "0x1",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0xc01354ce146cb8f6e5ed1efbabea78baae7304551d510bb862e1239fafa3bf1d",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "invalid-status",
+      "description": "Receipt has invalid status rather than 0x0 or 0x1.",
+      "assumptions": "All RPC views and order-binding attestations are invented input; no network checks.",
+      "expected": "MALFORMED_RECEIPT",
+      "order": {
+        "order_id": "order-invalid-status",
+        "network": "eip155:8453",
+        "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "recipient": "0x2222222222222222222222222222222222222222",
+        "payer": "0x1111111111111111111111111111111111111111",
+        "amount_atomic": "1000000",
+        "decimals": 6,
+        "binding_verified": true
+      },
+      "proof": {
+        "network": "eip155:8453",
+        "transaction_hash": "0x343f0623b908fa1b4e873169d03407982ccf0c623399c8bf8366a4955089485a",
+        "log_index": 0
+      },
+      "prior_claim_keys": [],
+      "rpc_views": [
+        {
+          "provider": "synthetic-rpc-a",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1001,
+          "receipt": {
+            "transaction_hash": "0x343f0623b908fa1b4e873169d03407982ccf0c623399c8bf8366a4955089485a",
+            "status": "0x2",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x343f0623b908fa1b4e873169d03407982ccf0c623399c8bf8366a4955089485a",
+                "removed": false
+              }
+            ]
+          }
+        },
+        {
+          "provider": "synthetic-rpc-b",
+          "chain_id": 8453,
+          "available": true,
+          "finalized_block": 1000,
+          "receipt": {
+            "transaction_hash": "0x343f0623b908fa1b4e873169d03407982ccf0c623399c8bf8366a4955089485a",
+            "status": "0x2",
+            "block_number": 1000,
+            "logs": [
+              {
+                "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "topics": [
+                  "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                  "0x0000000000000000000000001111111111111111111111111111111111111111",
+                  "0x0000000000000000000000002222222222222222222222222222222222222222"
+                ],
+                "data": "0x00000000000000000000000000000000000000000000000000000000000f4240",
+                "log_index": "0x0",
+                "transaction_hash": "0x343f0623b908fa1b4e873169d03407982ccf0c623399c8bf8366a4955089485a",
+                "removed": false
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Offline synthetic Base USDC payment QA fixture browser. 35 deterministic test cases, zero networking.">
+<title>Base USDC · Payment QA Fixtures</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#111e31;--line:#283851;--text:#eef5ff;--muted:#9fb0c6;--mint:#5ddfbd;--coral:#ffa68c}
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(650px 400px at 100% 0,#163952 0,transparent 74%),var(--bg);color:var(--text)}
+a{color:var(--mint)}.wrap{max-width:1120px;margin:auto;padding:32px 24px 80px}header{border-bottom:1px solid var(--line);padding-bottom:28px}
+.eyebrow{font-size:12px;font-weight:750;color:var(--mint);letter-spacing:.13em;text-transform:uppercase}h1{font-size:clamp(30px,6vw,55px);line-height:1.1;letter-spacing:-.05em;margin:16px 0}h2{font-size:21px;margin:0 0 10px}p{margin:10px 0 0;color:var(--muted)}
+.hero{max-width:850px;font-size:17px}.warn{border:1px solid #735c31;background:#2c261d;border-radius:12px;padding:16px 20px;margin-top:25px;color:#ffdfad}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:25px 0 32px}.stat{border:1px solid var(--line);background:var(--panel);padding:22px;border-radius:14px}.stat strong{display:block;font-size:32px;line-height:1.2}.stat small{color:var(--muted)}
+.controls{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.controls input,.controls select{background:#142338;border:1px solid #526580;color:var(--text);padding:11px 12px;border-radius:9px;min-height:45px;flex:1}.controls select{flex:0 0 190px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.case{border:1px solid var(--line);background:var(--panel);padding:17px 18px;border-radius:11px;min-height:120px}.casehead{display:flex;gap:8px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}.caseid{font-size:14px;font-weight:730;overflow-wrap:anywhere}.status{font-size:10px;font-weight:800;border-radius:6px;padding:4px 6px;letter-spacing:.05em}.good{color:#5ddfbd;background:#12392e}.bad{color:#ffbb9e;background:#422a2a}.case p{font-size:13px;margin-top:12px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#09101b;border:1px solid var(--line);padding:22px;border-radius:12px;color:#d3e4ff}footer{color:var(--muted);border-top:1px solid var(--line);margin-top:45px;padding-top:22px}.noresult{display:none;padding:20px;color:var(--muted)}:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+@media(max-width:700px){.wrap{padding:25px 16px 50px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.controls select{flex:1 1 100%}}
+</style></head><body><div class="wrap">
+<header><span class="eyebrow">Free Developer Preview · v0.1.0 · 100% Offline</span><h1>Base USDC<br>Payment QA Fixtures</h1><p class="hero">Test payment verification edge cases with deterministic, synthetic ERC-20 event logs. No live RPC, wallet, private keys, gas or API costs.</p>
+<div class="warn"><strong>Not a payment verifier.</strong> All data is invented. This package cannot validate real transactions, x402 authorizations or safely grant paid access.</div></header>
+<section class="stats" aria-label="Dataset details"><div class="stat"><strong>35</strong><small>Synthetic fixtures</small></div><div class="stat"><strong>24</strong><small>Expected outcomes</small></div><div class="stat"><strong>$0</strong><small>External dependencies</small></div></section>
+<section aria-labelledby="cases-head"><h2 id="cases-head">Explore scenarios <span id="visible" style="color:var(--muted);font-size:14px;font-weight:normal">35 showing</span></h2>
+<div class="controls"><label style="flex:1"><span class="eyebrow">Search</span><input id="search" type="search" placeholder="Try: replay, recipient, USDbC…" aria-label="Filter scenario descriptions"></label><label><span class="eyebrow">Result</span><select id="filter" aria-label="Filter by expected classification"><option value="">All outcomes</option><option value="ACCEPT">ACCEPT (5)</option><option value="BINDING_UNVERIFIED">BINDING_UNVERIFIED (1)</option><option value="DUPLICATE_LOG_INDEX">DUPLICATE_LOG_INDEX (1)</option><option value="INVALID_AMOUNT">INVALID_AMOUNT (1)</option><option value="INVALID_PROOF">INVALID_PROOF (1)</option><option value="LOG_NOT_FOUND">LOG_NOT_FOUND (1)</option><option value="MALFORMED_LOG">MALFORMED_LOG (4)</option><option value="MALFORMED_RECEIPT">MALFORMED_RECEIPT (1)</option><option value="NOT_FINALIZED">NOT_FINALIZED (1)</option><option value="NOT_TRANSFER_EVENT">NOT_TRANSFER_EVENT (1)</option><option value="OVERPAYMENT">OVERPAYMENT (1)</option><option value="PENDING">PENDING (1)</option><option value="REMOVED_LOG">REMOVED_LOG (1)</option><option value="REPLAY">REPLAY (1)</option><option value="RPC_DISAGREEMENT">RPC_DISAGREEMENT (2)</option><option value="RPC_UNAVAILABLE">RPC_UNAVAILABLE (1)</option><option value="TX_FAILED">TX_FAILED (1)</option><option value="TX_HASH_MISMATCH">TX_HASH_MISMATCH (1)</option><option value="UNDERPAYMENT">UNDERPAYMENT (1)</option><option value="WRONG_ASSET">WRONG_ASSET (2)</option><option value="WRONG_DECIMALS">WRONG_DECIMALS (1)</option><option value="WRONG_NETWORK">WRONG_NETWORK (3)</option><option value="WRONG_PAYER">WRONG_PAYER (1)</option><option value="WRONG_RECIPIENT">WRONG_RECIPIENT (1)</option></select></label></div>
+<div id="cards" class="grid"><article class="case" tabindex="0" data-code="ACCEPT" data-search="happy-path exact 1 usdc native transfer, two agreeing finalized snapshots. accept">
+<div class="casehead"><span class="caseid">happy-path</span><span class="status good">ACCEPT</span></div>
+<p>Exact 1 USDC native transfer, two agreeing finalized snapshots.</p></article>
+<article class="case" tabindex="0" data-code="ACCEPT" data-search="case-insensitive-address mixed-case input address still matches erc-20 fields. accept">
+<div class="casehead"><span class="caseid">case-insensitive-address</span><span class="status good">ACCEPT</span></div>
+<p>Mixed-case input address still matches ERC-20 fields.</p></article>
+<article class="case" tabindex="0" data-code="WRONG_NETWORK" data-search="wrong-order-network order asks for an unsupported evm network. wrong_network">
+<div class="casehead"><span class="caseid">wrong-order-network</span><span class="status bad">WRONG_NETWORK</span></div>
+<p>Order asks for an unsupported EVM network.</p></article>
+<article class="case" tabindex="0" data-code="WRONG_NETWORK" data-search="wrong-proof-network proof network claims ethereum l1. wrong_network">
+<div class="casehead"><span class="caseid">wrong-proof-network</span><span class="status bad">WRONG_NETWORK</span></div>
+<p>Proof network claims Ethereum L1.</p></article>
+<article class="case" tabindex="0" data-code="WRONG_NETWORK" data-search="rpc-on-other-chain rpc views report a different chain id. wrong_network">
+<div class="casehead"><span class="caseid">rpc-on-other-chain</span><span class="status bad">WRONG_NETWORK</span></div>
+<p>RPC views report a different chain ID.</p></article>
+<article class="case" tabindex="0" data-code="WRONG_ASSET" data-search="bridged-usdbc usdbc log cannot fulfill a native usdc order. wrong_asset">
+<div class="casehead"><span class="caseid">bridged-usdbc</span><span class="status bad">WRONG_ASSET</span></div>
+<p>USDbC log cannot fulfill a native USDC order.</p></article>
+<article class="case" tabindex="0" data-code="WRONG_ASSET" data-search="wrong-order-token order requests bridged token instead of native usdc. wrong_asset">
+<div class="casehead"><span class="caseid">wrong-order-token</span><span class="status bad">WRONG_ASSET</span></div>
+<p>Order requests bridged token instead of native USDC.</p></article>
+<article class="case" tabindex="0" data-code="WRONG_PAYER" data-search="wrong-payer transfer sender does not match bound order payer. wrong_payer">
+<div class="casehead"><span class="caseid">wrong-payer</span><span class="status bad">WRONG_PAYER</span></div>
+<p>Transfer sender does not match bound order payer.</p></article>
+<article class="case" tabindex="0" data-code="WRONG_RECIPIENT" data-search="wrong-recipient transfer paid to a different wallet. wrong_recipient">
+<div class="casehead"><span class="caseid">wrong-recipient</span><span class="status bad">WRONG_RECIPIENT</span></div>
+<p>Transfer paid to a different wallet.</p></article>
+<article class="case" tabindex="0" data-code="UNDERPAYMENT" data-search="underpayment 999999 atomic units is less than the required 1000000. underpayment">
+<div class="casehead"><span class="caseid">underpayment</span><span class="status bad">UNDERPAYMENT</span></div>
+<p>999999 atomic units is less than the required 1000000.</p></article>
+<article class="case" tabindex="0" data-code="OVERPAYMENT" data-search="overpayment exact-match policy rejects 1000001 atomic units. overpayment">
+<div class="casehead"><span class="caseid">overpayment</span><span class="status bad">OVERPAYMENT</span></div>
+<p>Exact-match policy rejects 1000001 atomic units.</p></article>
+<article class="case" tabindex="0" data-code="WRONG_DECIMALS" data-search="wrong-decimals order metadata mistakenly declares 18 decimals instead of 6. wrong_decimals">
+<div class="casehead"><span class="caseid">wrong-decimals</span><span class="status bad">WRONG_DECIMALS</span></div>
+<p>Order metadata mistakenly declares 18 decimals instead of 6.</p></article>
+<article class="case" tabindex="0" data-code="TX_FAILED" data-search="failed-receipt receipt status indicates reverted transaction. tx_failed">
+<div class="casehead"><span class="caseid">failed-receipt</span><span class="status bad">TX_FAILED</span></div>
+<p>Receipt status indicates reverted transaction.</p></article>
+<article class="case" tabindex="0" data-code="PENDING" data-search="pending-both both providers have no receipt yet. pending">
+<div class="casehead"><span class="caseid">pending-both</span><span class="status bad">PENDING</span></div>
+<p>Both providers have no receipt yet.</p></article>
+<article class="case" tabindex="0" data-code="RPC_DISAGREEMENT" data-search="receipt-missing-on-one one provider sees receipt while the other does not. rpc_disagreement">
+<div class="casehead"><span class="caseid">receipt-missing-on-one</span><span class="status bad">RPC_DISAGREEMENT</span></div>
+<p>One provider sees receipt while the other does not.</p></article>
+<article class="case" tabindex="0" data-code="NOT_FINALIZED" data-search="not-finalized one provider finalized head remains below tx block. not_finalized">
+<div class="casehead"><span class="caseid">not-finalized</span><span class="status bad">NOT_FINALIZED</span></div>
+<p>One provider finalized head remains below tx block.</p></article>
+<article class="case" tabindex="0" data-code="RPC_DISAGREEMENT" data-search="rpc-disagrees-receipt two rpc providers return different amounts. rpc_disagreement">
+<div class="casehead"><span class="caseid">rpc-disagrees-receipt</span><span class="status bad">RPC_DISAGREEMENT</span></div>
+<p>Two RPC providers return different amounts.</p></article>
+<article class="case" tabindex="0" data-code="RPC_UNAVAILABLE" data-search="rpc-unavailable one independent rpc is unavailable. rpc_unavailable">
+<div class="casehead"><span class="caseid">rpc-unavailable</span><span class="status bad">RPC_UNAVAILABLE</span></div>
+<p>One independent RPC is unavailable.</p></article>
+<article class="case" tabindex="0" data-code="LOG_NOT_FOUND" data-search="no-matching-log proof points at a log index not found in the receipt. log_not_found">
+<div class="casehead"><span class="caseid">no-matching-log</span><span class="status bad">LOG_NOT_FOUND</span></div>
+<p>Proof points at a log index not found in the receipt.</p></article>
+<article class="case" tabindex="0" data-code="NOT_TRANSFER_EVENT" data-search="not-transfer-event indexed event has wrong topic0, not erc-20 transfer. not_transfer_event">
+<div class="casehead"><span class="caseid">not-transfer-event</span><span class="status bad">NOT_TRANSFER_EVENT</span></div>
+<p>Indexed event has wrong topic0, not ERC-20 Transfer.</p></article>
+<article class="case" tabindex="0" data-code="MALFORMED_LOG" data-search="malformed-topic-count only two topics for an indexed erc-20 transfer. malformed_log">
+<div class="casehead"><span class="caseid">malformed-topic-count</span><span class="status bad">MALFORMED_LOG</span></div>
+<p>Only two topics for an indexed ERC-20 Transfer.</p></article>
+<article class="case" tabindex="0" data-code="MALFORMED_LOG" data-search="malformed-amount-data transfer data is not 32 bytes. malformed_log">
+<div class="casehead"><span class="caseid">malformed-amount-data</span><span class="status bad">MALFORMED_LOG</span></div>
+<p>Transfer data is not 32 bytes.</p></article>
+<article class="case" tabindex="0" data-code="MALFORMED_LOG" data-search="bad-address-padding indexed address topic has nonzero high padding. malformed_log">
+<div class="casehead"><span class="caseid">bad-address-padding</span><span class="status bad">MALFORMED_LOG</span></div>
+<p>Indexed address topic has nonzero high padding.</p></article>
+<article class="case" tabindex="0" data-code="REMOVED_LOG" data-search="log-removed reorg-removed log is not valid evidence. removed_log">
+<div class="casehead"><span class="caseid">log-removed</span><span class="status bad">REMOVED_LOG</span></div>
+<p>Reorg-removed log is not valid evidence.</p></article>
+<article class="case" tabindex="0" data-code="MALFORMED_LOG" data-search="log-tx-hash-mismatch log claims a different transaction hash. malformed_log">
+<div class="casehead"><span class="caseid">log-tx-hash-mismatch</span><span class="status bad">MALFORMED_LOG</span></div>
+<p>Log claims a different transaction hash.</p></article>
+<article class="case" tabindex="0" data-code="TX_HASH_MISMATCH" data-search="receipt-tx-hash-mismatch receipt tx hash does not equal supplied proof hash. tx_hash_mismatch">
+<div class="casehead"><span class="caseid">receipt-tx-hash-mismatch</span><span class="status bad">TX_HASH_MISMATCH</span></div>
+<p>Receipt tx hash does not equal supplied proof hash.</p></article>
+<article class="case" tabindex="0" data-code="ACCEPT" data-search="two-logs-select-first two valid transfers in one tx; log index 0 is uniquely selected. accept">
+<div class="casehead"><span class="caseid">two-logs-select-first</span><span class="status good">ACCEPT</span></div>
+<p>Two valid transfers in one tx; log index 0 is uniquely selected.</p></article>
+<article class="case" tabindex="0" data-code="ACCEPT" data-search="two-logs-select-second second independent log in same tx may have unique claim key. accept">
+<div class="casehead"><span class="caseid">two-logs-select-second</span><span class="status good">ACCEPT</span></div>
+<p>Second independent log in same tx may have unique claim key.</p></article>
+<article class="case" tabindex="0" data-code="REPLAY" data-search="replay-claimed-proof same (network, transaction, log index) proof was previously consumed. replay">
+<div class="casehead"><span class="caseid">replay-claimed-proof</span><span class="status bad">REPLAY</span></div>
+<p>Same (network, transaction, log index) proof was previously consumed.</p></article>
+<article class="case" tabindex="0" data-code="ACCEPT" data-search="other-log-already-claimed claim of log 1 is not blocked solely because log 0 was consumed. accept">
+<div class="casehead"><span class="caseid">other-log-already-claimed</span><span class="status good">ACCEPT</span></div>
+<p>Claim of log 1 is not blocked solely because log 0 was consumed.</p></article>
+<article class="case" tabindex="0" data-code="DUPLICATE_LOG_INDEX" data-search="duplicate-log-index malformed receipt repeats logindex 0 for multiple logs. duplicate_log_index">
+<div class="casehead"><span class="caseid">duplicate-log-index</span><span class="status bad">DUPLICATE_LOG_INDEX</span></div>
+<p>Malformed receipt repeats logIndex 0 for multiple logs.</p></article>
+<article class="case" tabindex="0" data-code="BINDING_UNVERIFIED" data-search="unverified-order-binding no trusted per-order binding attestation. binding_unverified">
+<div class="casehead"><span class="caseid">unverified-order-binding</span><span class="status bad">BINDING_UNVERIFIED</span></div>
+<p>No trusted per-order binding attestation.</p></article>
+<article class="case" tabindex="0" data-code="INVALID_PROOF" data-search="missing-proof-hash missing transaction hash is rejected. invalid_proof">
+<div class="casehead"><span class="caseid">missing-proof-hash</span><span class="status bad">INVALID_PROOF</span></div>
+<p>Missing transaction hash is rejected.</p></article>
+<article class="case" tabindex="0" data-code="INVALID_AMOUNT" data-search="zero-amount-order zero amount has no payable order semantics. invalid_amount">
+<div class="casehead"><span class="caseid">zero-amount-order</span><span class="status bad">INVALID_AMOUNT</span></div>
+<p>Zero amount has no payable order semantics.</p></article>
+<article class="case" tabindex="0" data-code="MALFORMED_RECEIPT" data-search="invalid-status receipt has invalid status rather than 0x0 or 0x1. malformed_receipt">
+<div class="casehead"><span class="caseid">invalid-status</span><span class="status bad">MALFORMED_RECEIPT</span></div>
+<p>Receipt has invalid status rather than 0x0 or 0x1.</p></article></div><p class="noresult" id="none">No matching fixtures.</p></section>
+<section style="margin-top:42px"><h2>Run the checks</h2><p>Python 3.10+ and the standard library are sufficient. Use commands from the extracted kit root:</p>
+<pre>python src/check_cases.py
+python src/check_cases.py --case bridged-usdbc
+python -m unittest discover -s tests -v</pre></section>
+<footer>Offline demonstration · Synthetic Base network metadata · Public ERC-20 token addresses are used only as test constants · No live verification</footer>
+</div><script>
+const items=[...document.querySelectorAll('.case')]; const search=document.getElementById('search');const filter=document.getElementById('filter');
+function update(){const q=search.value.toLowerCase().trim(),f=filter.value;let n=0;for(const el of items){const show=(!q||el.dataset.search.includes(q))&&(!f||el.dataset.code===f);el.hidden=!show;if(show)n++;}document.getElementById('visible').textContent=n+' showing';document.getElementById('none').style.display=n?'none':'block';}
+search.addEventListener('input',update);filter.addEventListener('change',update);
+</script></body></html>
