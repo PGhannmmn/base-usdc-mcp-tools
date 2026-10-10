@@ -1,0 +1,73 @@
+name: "003 — Receivables Auditor pilot interest"
+description: "Tell us if Base USDC receivables reconciliation would help your workflow. This is a public GitHub issue, not a private application."
+title: "[003 Pilot] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in the **Base USDC Receivables Auditor (003)**.
+
+        **This form creates a public GitHub Issue.** Anyone can read your answers and your GitHub username. Only share information you are comfortable making public.
+
+        **Do not share** private keys, seed phrases, wallet-signing requests, API/Bearer tokens, invoices containing customer data, nonpublic addresses or transactions, or sensitive commercial details.
+
+        This is a non-binding request for feedback or a possible pilot, not a free-access offer, approval, or a commitment to implement a feature. Existing paid calls remain subject to the published direct-USDC credit pricing.
+  - type: dropdown
+    id: role
+    attributes:
+      label: Which best describes your workflow?
+      options:
+        - I receive Base USDC payments directly
+        - I build AI agent or MCP services
+        - I develop payment or accounting integrations
+        - I am researching a possible use case
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: pain
+    attributes:
+      label: What problem are you trying to solve?
+      description: "Describe the workflow or recurring exception, without posting actual transaction details."
+      placeholder: "Example: Matching multiple incoming Base USDC transfers to expected invoices is currently manual."
+    validations:
+      required: true
+  - type: dropdown
+    id: desired
+    attributes:
+      label: Which capability matters most?
+      options:
+        - Match transfers to expected receivables (available today)
+        - Discover incoming transfers without a list of expected receivables (candidate feature)
+        - Reconcile a larger period or repeated daily batches (candidate feature)
+        - Export or integrate results into an existing system
+        - I am not sure yet
+    validations:
+      required: true
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Approximate use frequency (optional)
+      options:
+        - Not sure
+        - Occasional / ad hoc
+        - Daily
+        - Several times a day
+        - More than 100 checks per day
+    validations:
+      required: false
+  - type: textarea
+    id: expectations
+    attributes:
+      label: What would make a small pilot useful? (optional)
+      description: "You can reply in this public GitHub Issue; no email address required."
+      placeholder: "Example: A read-only demo using synthetic cases would be enough to judge fit."
+    validations:
+      required: false
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Public-posting acknowledgement
+      options:
+        - label: "I understand this is a public issue and have not included secrets, tokens, customer data or sensitive payment information."
+          required: true
